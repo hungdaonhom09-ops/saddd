@@ -1,12 +1,1629 @@
---[[
- .____                  ________ ___.    _____                           __                
- |    |    __ _______   \_____  \\_ |___/ ____\_ __  ______ ____ _____ _/  |_  ___________ 
- |    |   |  |  \__  \   /   |   \| __ \   __\  |  \/  ___// ___\\__  \\   __\/  _ \_  __ \
- |    |___|  |  // __ \_/    |    \ \_\ \  | |  |  /\___ \\  \___ / __ \|  | (  <_> )  | \/
- |_______ \____/(____  /\_______  /___  /__| |____//____  >\___  >____  /__|  \____/|__|   
-         \/          \/         \/    \/                \/     \/     \/                   
-          \_Welcome to LuaObfuscator.com   (Alpha 0.10.9) ~  Much Love, Ferib 
+local s = getgenv().__SESSION
+if not s then return end
+if not string.match(s, "^S%-") then return end
 
-]]--
+-- OPTIONAL: delay phá dump
+task.wait(math.random())
 
-local v0=game.PlaceId;local v1="__"   .. string.char(51 + 32 ,270 -201 ,83,83)   .. "_"   .. tostring(v0) ;if  not getgenv()[v1] then return;end local v2=game:GetService("Players");local v3=game:GetService("RunService");local v4=game:GetService("HttpService");local v5=game:GetService("TeleportService");local v6={VERIFY_TIME=1 + 14 ,VERIFY_RADIUS=5,OSCILLATION=0.15,OSCILLATION_SPEED=0.8,DETECTION_PATTERNS={"Bonus:","completed"}};local v7={{name="A",x=425.7,y= -(10.5 + 0),z= -(768 -428)},{name="C",x=1132.37,y=1416.9 -(447 + 966) ,z=1448 -919 },{name="B",x=3272 -(376 + 325) ,y= -(8.440000000000001 -3),z= -337.7}};local v8=v2.LocalPlayer;local v9=v8.Character or v8.CharacterAdded:Wait() ;local v10=v9:WaitForChild("HumanoidRootPart");local v11=v9:WaitForChild("Humanoid");local v12=false;local v13=nil;local v14={};local v15=1;local v16={};local v17=0 -0 ;local v18=false;local v19=false;local v20=false;if (_G.HungDaoAutoRun==nil) then _G.HungDaoAutoRun=false;end local function v21() local v43=game.PlaceId;local v44=game.JobId;updateUI("🔍 Tìm server mới...");local v45="";local v46=nil;local v47,v48=pcall(function() repeat local v310=0 + 0 ;local v311;local v312;while true do if (v310==2) then v45=v312.nextPageCursor or "" ;break;end if (v310==(2 -1)) then v312=v4:JSONDecode(game:HttpGet(v311));for v346,v347 in ipairs(v312.data) do if ((v347.id~=v44) and (v347.playing<v347.maxPlayers)) then v46=v347.id;break;end end v310=2;end if (v310==0) then v311="https://games.roblox.com/v1/games/"   .. v43   .. "/servers/Public?sortOrder=Asc&limit=100" ;if (v45~="") then v311=v311   .. "&cursor="   .. v45 ;end v310=15 -(9 + 5) ;end end until v46 or (v45=="")  end);if  not v47 then local v313=0;while true do if (1==v313) then return false;end if (v313==(376 -(85 + 291))) then updateUI("⚠️ Lỗi tìm server: "   .. tostring(v48):sub(1266 -(243 + 1022) ,114 -84 ) );task.wait(3 + 0 );v313=1181 -(1123 + 57) ;end end end if v46 then updateUI("🚀 Chuyển server...");_G.HungDaoAutoRun=true;task.wait(0.5 + 0 );v5:TeleportToPlaceInstance(v43,v46);return true;else local v314=254 -(163 + 91) ;while true do if (v314==(1931 -(1869 + 61))) then return false;end if (v314==0) then updateUI("⚠️ Không tìm được server - thử lại");task.wait(1 + 2 );v314=1;end end end end local function v22() local v49=0 -0 ;while true do if (v49==(0 -0)) then if v13 then return;end v13=v3.Stepped:Connect(function() if  not v12 then return;end for v340,v341 in pairs(v9:GetDescendants()) do if v341:IsA("BasePart") then v341.CanCollide=false;end end end);break;end end end local function v23() if v13 then local v315=0;while true do if (v315==(0 + 0)) then v13:Disconnect();v13=nil;break;end end end end local function v24() local v50=v8.PlayerGui:FindFirstChild("TeleportUI");if v50 then v50:Destroy();end local v51=Instance.new("ScreenGui");v51.Name="TeleportUI";v51.ResetOnSpawn=false;v51.Parent=v8.PlayerGui;local v56=Instance.new("Frame");v56.Name="MainFrame";v56.Size=UDim2.new(0,329 -89 ,0 + 0 ,72);v56.Position=UDim2.new(1, -250,1474 -(1329 + 145) ,10);v56.BackgroundColor3=Color3.fromRGB(989 -(140 + 831) ,18,24);v56.BorderSizePixel=1850 -(1409 + 441) ;v56.Active=true;v56.Draggable=true;v56.Parent=v51;local v65=Instance.new("UIStroke");v65.Color=Color3.fromRGB(788 -(15 + 703) ,33 + 37 ,528 -(262 + 176) );v65.Thickness=1722.5 -(345 + 1376) ;v65.Parent=v56;Instance.new("UICorner",v56).CornerRadius=UDim.new(688 -(198 + 490) ,35 -27 );local v70=Instance.new("Frame");v70.Size=UDim2.new(1,0 -0 ,1206 -(696 + 510) ,58 -30 );v70.BackgroundColor3=Color3.fromRGB(1292 -(1091 + 171) ,5 + 25 ,125 -85 );v70.BorderSizePixel=0 -0 ;v70.Parent=v56;Instance.new("UICorner",v70).CornerRadius=UDim.new(374 -(123 + 251) ,39 -31 );local v76=Instance.new("Frame");v76.Size=UDim2.new(1,698 -(208 + 490) ,0,14);v76.Position=UDim2.new(0,0 + 0 ,1 + 0 , -14);v76.BackgroundColor3=Color3.fromRGB(866 -(660 + 176) ,4 + 26 ,242 -(14 + 188) );v76.BorderSizePixel=675 -(534 + 141) ;v76.Parent=v70;local v82=Instance.new("TextLabel");v82.Size=UDim2.new(0,9 + 11 ,0 + 0 ,20);v82.Position=UDim2.new(0 + 0 ,12 -6 ,0,5 -1 );v82.BackgroundTransparency=2 -1 ;v82.Text="⚡";v82.TextColor3=Color3.fromRGB(100,97 + 83 ,255);v82.TextSize=9 + 5 ;v82.Font=Enum.Font.GothamBold;v82.Parent=v70;local v92=Instance.new("TextLabel");v92.Size=UDim2.new(397 -(115 + 281) , -(279 -159),1 + 0 ,0 -0 );v92.Position=UDim2.new(0,102 -74 ,867 -(550 + 317) ,0 -0 );v92.BackgroundTransparency=1 -0 ;v92.Text="HungDao";v92.TextColor3=Color3.fromRGB(220,614 -394 ,230);v92.TextSize=296 -(134 + 151) ;v92.Font=Enum.Font.GothamBold;v92.TextXAlignment=Enum.TextXAlignment.Left;v92.Parent=v70;local v103=Instance.new("TextButton");v103.Name="SettingsBtn";v103.Size=UDim2.new(0,24,0,1689 -(970 + 695) );v103.Position=UDim2.new(1 -0 , -78,1990 -(582 + 1408) ,6 -4 );v103.BackgroundColor3=Color3.fromRGB(62 -12 ,188 -138 ,65);v103.Text="⚙";v103.TextColor3=Color3.fromRGB(2024 -(1195 + 629) ,264 -64 ,441 -(187 + 54) );v103.TextSize=792 -(162 + 618) ;v103.Font=Enum.Font.GothamBold;v103.BorderSizePixel=0;v103.Parent=v70;Instance.new("UICorner",v103).CornerRadius=UDim.new(0,4 + 1 );local v115=Instance.new("TextButton");v115.Name="MinimizeBtn";v115.Size=UDim2.new(0 + 0 ,50 -26 ,0 -0 ,2 + 22 );v115.Position=UDim2.new(1, -52,1636 -(1373 + 263) ,1002 -(451 + 549) );v115.BackgroundColor3=Color3.fromRGB(16 + 34 ,77 -27 ,109 -44 );v115.Text="—";v115.TextColor3=Color3.fromRGB(1584 -(746 + 638) ,200,76 + 124 );v115.TextSize=12;v115.Font=Enum.Font.GothamBold;v115.BorderSizePixel=0 -0 ;v115.Parent=v70;Instance.new("UICorner",v115).CornerRadius=UDim.new(341 -(218 + 123) ,1586 -(1535 + 46) );local v127=Instance.new("TextButton");v127.Size=UDim2.new(0,24 + 0 ,0 + 0 ,24);v127.Position=UDim2.new(561 -(306 + 254) , -26,0 + 0 ,3 -1 );v127.BackgroundColor3=Color3.fromRGB(200,1527 -(899 + 568) ,40 + 20 );v127.Text="×";v127.TextColor3=Color3.fromRGB(617 -362 ,858 -(268 + 335) ,255);v127.TextSize=306 -(60 + 230) ;v127.Font=Enum.Font.GothamBold;v127.BorderSizePixel=572 -(426 + 146) ;v127.Parent=v70;Instance.new("UICorner",v127).CornerRadius=UDim.new(0 + 0 ,5);local v138=Instance.new("Frame");v138.Name="Content";v138.Size=UDim2.new(1457 -(282 + 1174) , -(827 -(569 + 242)),2 -1 , -(3 + 33));v138.Position=UDim2.new(1024 -(706 + 318) ,8,1251 -(721 + 530) ,1303 -(945 + 326) );v138.BackgroundTransparency=2 -1 ;v138.Parent=v56;local v144=Instance.new("TextLabel");v144.Name="Status";v144.Size=UDim2.new(1 + 0 ,700 -(271 + 429) ,0 + 0 ,1516 -(1408 + 92) );v144.Position=UDim2.new(1086 -(461 + 625) ,1288 -(993 + 295) ,0,0);v144.BackgroundTransparency=1 + 0 ;v144.Text="Sẵn sàng...";v144.TextColor3=Color3.fromRGB(1341 -(418 + 753) ,65 + 105 ,19 + 161 );v144.TextSize=3 + 7 ;v144.Font=Enum.Font.Gotham;v144.TextXAlignment=Enum.TextXAlignment.Left;v144.Parent=v138;local v156=Instance.new("Frame");v156.Size=UDim2.new(1 + 0 ,529 -(406 + 123) ,1769 -(1749 + 20) ,5 + 15 );v156.Position=UDim2.new(1322 -(1249 + 73) ,0 + 0 ,0,1165 -(466 + 679) );v156.BackgroundColor3=Color3.fromRGB(84 -49 ,100 -65 ,1945 -(106 + 1794) );v156.BorderSizePixel=0 + 0 ;v156.Parent=v138;Instance.new("UICorner",v156).CornerRadius=UDim.new(0 + 0 ,8);local v163=Instance.new("Frame");v163.Name="Fill";v163.Size=UDim2.new(0 -0 ,0 -0 ,115 -(4 + 110) ,584 -(57 + 527) );v163.BackgroundColor3=Color3.fromRGB(80,150,1682 -(41 + 1386) );v163.BorderSizePixel=0;v163.Parent=v156;Instance.new("UICorner",v163).CornerRadius=UDim.new(103 -(17 + 86) ,6 + 2 );local v170=Instance.new("TextLabel");v170.Name="Text";v170.Size=UDim2.new(1 -0 ,0,1,0);v170.BackgroundTransparency=2 -1 ;v170.Text="0%";v170.TextColor3=Color3.fromRGB(421 -(122 + 44) ,440 -185 ,845 -590 );v170.TextSize=8 + 1 ;v170.Font=Enum.Font.GothamBold;v170.ZIndex=1 + 1 ;v170.Parent=v156;local v180=Instance.new("TextButton");v180.Name="SkipBtn";v180.Size=UDim2.new(0,121 -61 ,65 -(30 + 35) ,14 + 6 );v180.Position=UDim2.new(1, -68,1257 -(1043 + 214) ,166 -122 );v180.BackgroundColor3=Color3.fromRGB(1467 -(323 + 889) ,484 -304 ,640 -(361 + 219) );v180.Text="⏭️ Skip";v180.TextColor3=Color3.fromRGB(575 -(53 + 267) ,58 + 197 ,668 -(15 + 398) );v180.TextSize=991 -(18 + 964) ;v180.Font=Enum.Font.GothamBold;v180.BorderSizePixel=0 -0 ;v180.Parent=v138;Instance.new("UICorner",v180).CornerRadius=UDim.new(0,5);v180.MouseButton1Click:Connect(function() if (v12 and (v15<= #v7)) then local v320=0;while true do if (v320==(0 + 0)) then v20=true;updateUI("⏭️ Đang bỏ qua...");break;end end end end);local v192=Instance.new("Frame");v192.Name="SettingsPanel";v192.Size=UDim2.new(1 + 0 ,0,850 -(20 + 830) ,71 + 19 );v192.Position=UDim2.new(126 -(116 + 10) ,0,0,4 + 40 );v192.BackgroundColor3=Color3.fromRGB(25,763 -(542 + 196) ,35);v192.BorderSizePixel=0;v192.Visible=false;v192.Parent=v56;Instance.new("UICorner",v192).CornerRadius=UDim.new(0 -0 ,2 + 4 );local v201=Instance.new("TextLabel");v201.Size=UDim2.new(0.5 + 0 , -(3 + 5),0,41 -25 );v201.Position=UDim2.new(0 -0 ,1559 -(1126 + 425) ,405 -(118 + 287) ,31 -23 );v201.BackgroundTransparency=1122 -(118 + 1003) ;v201.Text="⏱️ Verify (s):";v201.TextColor3=Color3.fromRGB(526 -346 ,557 -(142 + 235) ,861 -671 );v201.TextSize=2 + 7 ;v201.Font=Enum.Font.Gotham;v201.TextXAlignment=Enum.TextXAlignment.Left;v201.Parent=v192;local v211=Instance.new("TextBox");v211.Name="VerifyBox";v211.Size=UDim2.new(977.5 -(553 + 424) , -(29 -13),0 + 0 ,20 + 0 );v211.Position=UDim2.new(0.5 + 0 ,4 + 4 ,0,4 + 2 );v211.BackgroundColor3=Color3.fromRGB(75 -40 ,97 -62 ,100 -55 );v211.Text=tostring(v6.VERIFY_TIME);v211.TextColor3=Color3.fromRGB(255,75 + 180 ,1232 -977 );v211.TextSize=763 -(239 + 514) ;v211.Font=Enum.Font.Gotham;v211.PlaceholderText="5-30";v211.Parent=v192;Instance.new("UICorner",v211).CornerRadius=UDim.new(0 + 0 ,4);local v223=Instance.new("TextLabel");v223.Size=UDim2.new(1329.5 -(797 + 532) , -(6 + 2),0 + 0 ,37 -21 );v223.Position=UDim2.new(1202 -(373 + 829) ,8,731 -(476 + 255) ,34);v223.BackgroundTransparency=1;v223.Text="🔄 Rung:";v223.TextColor3=Color3.fromRGB(1310 -(369 + 761) ,105 + 75 ,345 -155 );v223.TextSize=16 -7 ;v223.Font=Enum.Font.Gotham;v223.TextXAlignment=Enum.TextXAlignment.Left;v223.Parent=v192;local v233=Instance.new("TextBox");v233.Name="OscBox";v233.Size=UDim2.new(238.5 -(64 + 174) , -16,0 + 0 ,20);v233.Position=UDim2.new(0.5 -0 ,8,0,368 -(144 + 192) );v233.BackgroundColor3=Color3.fromRGB(35,251 -(42 + 174) ,45);v233.Text=tostring(v6.OSCILLATION);v233.TextColor3=Color3.fromRGB(192 + 63 ,212 + 43 ,255);v233.TextSize=10;v233.Font=Enum.Font.Gotham;v233.PlaceholderText="0.05-0.5";v233.Parent=v192;Instance.new("UICorner",v233).CornerRadius=UDim.new(0,4);local v245=Instance.new("TextLabel");v245.Size=UDim2.new(0.5 + 0 , -8,0,1520 -(363 + 1141) );v245.Position=UDim2.new(1580 -(1183 + 397) ,24 -16 ,0 + 0 ,60);v245.BackgroundTransparency=1 + 0 ;v245.Text="⏰ Delay (s):";v245.TextColor3=Color3.fromRGB(180,2155 -(1913 + 62) ,120 + 70 );v245.TextSize=23 -14 ;v245.Font=Enum.Font.Gotham;v245.TextXAlignment=Enum.TextXAlignment.Left;v245.Parent=v192;local v255=Instance.new("TextBox");v255.Name="DelayBox";v255.Size=UDim2.new(0.5, -(1949 -(565 + 1368)),0 -0 ,20);v255.Position=UDim2.new(1661.5 -(1477 + 184) ,10 -2 ,0,58);v255.BackgroundColor3=Color3.fromRGB(35,33 + 2 ,45);v255.Text="2";v255.TextColor3=Color3.fromRGB(1111 -(564 + 292) ,439 -184 ,255);v255.TextSize=10;v255.Font=Enum.Font.Gotham;v255.PlaceholderText="1-5";v255.Parent=v192;Instance.new("UICorner",v255).CornerRadius=UDim.new(0 -0 ,4);v211.FocusLost:Connect(function() local v298=304 -(244 + 60) ;local v299;while true do if (v298==0) then v299=tonumber(v211.Text);if (v299 and (v299>=(4 + 1)) and (v299<=30)) then v6.VERIFY_TIME=v299;else v211.Text=tostring(v6.VERIFY_TIME);end break;end end end);v233.FocusLost:Connect(function() local v300=tonumber(v233.Text);if (v300 and (v300>=(476.05 -(41 + 435))) and (v300<=(1001.5 -(938 + 63)))) then v6.OSCILLATION=v300;else v233.Text=tostring(v6.OSCILLATION);end end);v255.FocusLost:Connect(function() local v301=tonumber(v255.Text);if (v301 and (v301>=(1 + 0)) and (v301<=(1130 -(936 + 189)))) then v14.successDelay=v301;else v255.Text=tostring(v14.successDelay or (1 + 1) );end end);local v267=false;local v268=false;v103.MouseButton1Click:Connect(function() v268= not v268;if v268 then local v325=1613 -(1565 + 48) ;while true do if (v325==1) then v103.BackgroundColor3=Color3.fromRGB(50 + 30 ,150,1393 -(782 + 356) );break;end if (v325==(267 -(176 + 91))) then v192.Visible=true;v56:TweenSize(UDim2.new(0,240,0 -0 ,237 -75 ),Enum.EasingDirection.Out,Enum.EasingStyle.Quad,1092.2 -(975 + 117) ,true);v325=1876 -(157 + 1718) ;end end else v192.Visible=false;v56:TweenSize(UDim2.new(0,240,0,59 + 13 ),Enum.EasingDirection.Out,Enum.EasingStyle.Quad,0.2 -0 ,true);v103.BackgroundColor3=Color3.fromRGB(50,170 -120 ,1083 -(697 + 321) );end end);local v267=false;v115.MouseButton1Click:Connect(function() local v302=0;while true do if (v302==0) then v267= not v267;if v267 then v268=false;v192.Visible=false;v103.BackgroundColor3=Color3.fromRGB(136 -86 ,105 -55 ,149 -84 );v56:TweenSize(UDim2.new(0 + 0 ,449 -209 ,0,28),Enum.EasingDirection.Out,Enum.EasingStyle.Quad,0.2 -0 ,true);v115.Text="+";v138.Visible=false;else local v356=1227 -(322 + 905) ;while true do if (v356==(611 -(602 + 9))) then v56:TweenSize(UDim2.new(1189 -(449 + 740) ,1112 -(826 + 46) ,947 -(245 + 702) ,227 -155 ),Enum.EasingDirection.Out,Enum.EasingStyle.Quad,0.2 + 0 ,true);v115.Text="—";v356=1899 -(260 + 1638) ;end if (v356==(441 -(382 + 58))) then v138.Visible=true;break;end end end break;end end end);v127.MouseButton1Click:Connect(function() local v303=0 -0 ;while true do if ((2 + 0)==v303) then stopNotificationListener();v51:Destroy();break;end if (v303==(0 -0)) then _G.HungDaoAutoRun=false;v12=false;v303=2 -1 ;end if (1==v303) then v23();stopWatchdog();v303=1207 -(902 + 303) ;end end end);v14.status=v144;v14.progFill=v163;v14.progText=v170;v14.successDelay=3 -1 ;end local function v25(v273) if v273 then if v14.status then v14.status.Text=v273;end end end local function v26(v274) if  not v14.progText then return;end v14.progText.Text=string.format("%d%%",math.floor(v274));v14.progFill:TweenSize(UDim2.new(v274/100 ,0 -0 ,1 + 0 ,1690 -(1121 + 569) ),Enum.EasingDirection.Out,Enum.EasingStyle.Quad,214.2 -(22 + 192) ,true);end local function v27(v276,v277,v278) for v304,v305 in pairs(v9:GetDescendants()) do if v305:IsA("BasePart") then v305.CanCollide=false;end end v10.CFrame=CFrame.new(v276,v277,v278);v10.Velocity=Vector3.new(683 -(483 + 200) ,1463 -(1404 + 59) ,0 -0 );v10.RotVelocity=Vector3.new(0 -0 ,0,0);v10.AssemblyLinearVelocity=Vector3.new(765 -(468 + 297) ,562 -(334 + 228) ,0);v10.AssemblyAngularVelocity=Vector3.new(0,0 -0 ,0);end local function v28(v284) if v284 then v11.WalkSpeed=36 -20 ;else v11.WalkSpeed=16;end end local v29={};local v30=0 -0 ;local v31=0 + 0 ;local function v32() local v285=236 -(141 + 95) ;while true do if ((0 + 0)==v285) then for v331,v332 in pairs(v8.PlayerGui:GetDescendants()) do if (v332:IsA("TextLabel") and v332.Visible and v332.Parent) then local v357=v332.Text;local v358=v332:GetFullName();if (v357 and (v357~="") and ( #v357>(25 -15))) then local v368=0 -0 ;local v369;while true do if (v368==1) then if v369 then local v375=v332.AbsolutePosition;local v376=v332.AbsoluteSize;local v377=workspace.CurrentCamera.ViewportSize/2 ;local v378=math.abs((v375.X + (v376.X/(1 + 1))) -v377.X ) + math.abs((v375.Y + (v376.Y/(5 -3))) -v377.Y ) ;if (v378<(282 + 118)) then local v379=v29[v358];if ( not v379 or (v379<v31)) then local v380=0;while true do if (v380==(0 + 0)) then v29[v358]=v31;return true,v357;end end end end end break;end if (v368==(0 -0)) then v369=false;for v373,v374 in ipairs(v6.DETECTION_PATTERNS) do if string.find(v357,v374) then v369=true;break;end end v368=1 + 0 ;end end end end end return false,nil;end end end local v33=tick();local v34=nil;local v35=nil;local function v36() v33=tick();end local function v37() if v34 then v34:Disconnect();v34=nil;end end local function v38() if v35 then local v318=163 -(92 + 71) ;while true do if (v318==(0 + 0)) then v35:Disconnect();v35=nil;break;end end end end local function v39() if v34 then return;end v34=v3.Heartbeat:Connect(function() local v306=0 -0 ;while true do if ((765 -(574 + 191))==v306) then if  not v12 then return;end if ((tick() -v33)>(25 + 5)) then v25("⚠️ Phát hiện đơ - Khởi động lại");v33=tick();v38();v23();task.wait(4 -2 );if (v15> #v7) then local v370=0 + 0 ;while true do if ((849 -(254 + 595))==v370) then v15=1;v16={};break;end end end execute();end break;end end end);end local function v40() local v286=126 -(55 + 71) ;while true do if (v286==(0 -0)) then if v35 then return;end v19=false;v286=1;end if (v286==(1791 -(573 + 1217))) then v35=v3.Heartbeat:Connect(function() local v333=0;local v334;local v335;while true do if (v333==(0 -0)) then if v19 then return;end v334,v335=v32();v333=1 + 0 ;end if (v333==(1 -0)) then if v334 then v19=true;v25(string.format("✅ Phát hiện: %s",v335:sub(940 -(714 + 225) ,20)));end break;end end end);break;end end end local function v41(v287,v288,v289,v290) local v291=0 -0 ;local v292;local v293;while true do if (v291==3) then v28(false);v27(v287,v288 + (2 -0) ,v289);return v19;end if (v291==2) then v28(true);v36();while  not v19 and v12  do v36();if v20 then break;end if ((tick() -v293)>v290) then v25("⏰ Timeout - Chuyển điểm");break;end if ( not v9 or  not v9.Parent) then local v359=0 + 0 ;while true do if (v359==1) then return false;end if (v359==(0 -0)) then v25("❌ Nhân vật mất!");v38();v359=1;end end end local v336=v9:FindFirstChildOfClass("Humanoid");if ( not v336 or (v336.Health<=0)) then v25("💀 Nhân vật chết!");v38();return false;end local v337=v10.Position;local v338=Vector3.new(v287,v288,v289);local v339=(v337-v338).Magnitude;if (v339>v6.VERIFY_RADIUS) then local v360=806 -(118 + 688) ;while true do if (v360==(48 -(25 + 23))) then v25("🔄 Bị dật xa, tele lại...");v27(v287,v288 + 2 ,v289);v360=1;end if ((1 + 0)==v360) then v292=1886 -(927 + 959) ;break;end end else local v361=0 -0 ;local v362;local v363;local v364;while true do if (v361==(734 -(16 + 716))) then v364=tick() -v293 ;v25(string.format("🔍 Chờ thông báo... %.1fs",v364));break;end if (v361==(0 -0)) then v292=v292 + (97.1 -(11 + 86)) ;v362=math.sin(v292 * v6.OSCILLATION_SPEED ) * v6.OSCILLATION ;v361=2 -1 ;end if (v361==(286 -(175 + 110))) then v363=math.cos(v292 * v6.OSCILLATION_SPEED ) * v6.OSCILLATION ;v27(v287 + v362 ,v288 + (4 -2) ,v289 + v363 );v361=9 -7 ;end end end task.wait(1796.1 -(503 + 1293) );end v38();v291=8 -5 ;end if (v291==(0 + 0)) then v292=0;v293=tick();v19=false;v29={};v291=1062 -(810 + 251) ;end if (v291==(1 + 0)) then v30=v30 + 1 + 0 ;v31=v30;task.wait(1.5 + 0 );v40();v291=535 -(43 + 490) ;end end end function execute() v12=true;_G.HungDaoAutoRun=true;v22();v39();v36();if (v17==(733 -(711 + 22))) then v17=tick();end while (v15<= #v7) and v12  do v36();local v307=v7[v15];if v16[v307.name] then v15=v15 + (3 -2) ;continue;end v26(((v15-1)/ #v7) * (959 -(240 + 619)) );v25(string.format("⚡ Tele đến %s",v307.name));v22();task.wait(0.1);v27(v307.x,v307.y + 1 + 1 ,v307.z);task.wait(0.2 -0 );local v308=v41(v307.x,v307.y,v307.z,v6.VERIFY_TIME);if v20 then local v329=0;while true do if (v329==(1 + 0)) then v25(string.format("⏭️ Bỏ qua %s",v307.name));v26((v15/ #v7) * (1844 -(1344 + 400)) );v329=407 -(255 + 150) ;end if (v329==(0 + 0)) then v20=false;v16[v307.name]=true;v329=1 + 0 ;end if (v329==(8 -6)) then task.wait(0.5 -0 );v15=v15 + (1740 -(404 + 1335)) ;break;end end elseif v308 then v16[v307.name]=true;v25(string.format("✅ Xong %s!",v307.name));v26((v15/ #v7) * (506 -(183 + 223)) );v15=v15 + 1 ;v25("🔄 Chuyển server để reset thông báo...");task.wait(0.5);_G.HungDaoAutoRun=true;local v343=v21();if  not v343 then v25("⚠️ Giữ nguyên server - tiếp tục...");task.wait(1 -0 );end return;else v25(string.format("⏰ Timeout %s - Làm lại",v307.name));task.wait(0.5 + 0 );end end local v294=0 + 0 ;for v309 in pairs(v16) do v294=v294 + (338 -(10 + 327)) ;end if (v294>= #v7) then v26(100);v25("🎉 HOÀN THÀNH! - Làm lại...");task.wait(3);v15=1 + 0 ;v16={};execute();else local v319=338 -(118 + 220) ;while true do if (v319==(0 + 0)) then v25(string.format("⏰ Đã xong %d/%d - Làm nốt",v294, #v7));task.wait(451 -(108 + 341) );v319=1 + 0 ;end if (v319==(4 -3)) then v15=1494 -(711 + 782) ;execute();break;end end end v23();v12=false;end local function v42() local v295=v9:FindFirstChildOfClass("Humanoid");if v295 then v295.Died:Connect(function() if (v12 and (v15<= #v7)) then local v344=0 -0 ;while true do if (v344==(469 -(270 + 199))) then v25("💀 Bị chết - Chờ hồi sinh...");v18=true;v344=1;end if ((1 + 0)==v344) then v23();v38();break;end end end end);end end v8.CharacterAdded:Connect(function(v296) local v297=1819 -(580 + 1239) ;while true do if (v297==(5 -3)) then v42();if  not v8.PlayerGui:FindFirstChild("TeleportUI") then v24();end v297=3 + 0 ;end if ((1 + 2)==v297) then if (v18 and (v15<= #v7)) then local v345=0;while true do if (v345==0) then v18=false;v25("♻️ Hồi sinh - Tiếp tục...");v345=1 + 0 ;end if (v345==(2 -1)) then task.wait(1 + 0 );execute();break;end end elseif (_G.HungDaoAutoRun and  not v12) then v25("🔄 Tiếp tục sau server hop...");v15=1;v16={};v17=1167 -(645 + 522) ;task.wait(1791 -(1010 + 780) );execute();end break;end if (v297==0) then v9=v296;v10=v9:WaitForChild("HumanoidRootPart");v297=1;end if (v297==(1 + 0)) then v11=v9:WaitForChild("Humanoid");task.wait(9 -7 );v297=2;end end end);v24();v42();task.wait(2 -1 );v25("✅ Sẵn sàng!");task.wait(2);execute();
+-- ============================================
+-- MONEY EVENT + ARCADE EVENT + BAT
+-- ============================================
+-- Money Event: Auto farm (logic gốc)
+-- Arcade Event: Auto collect (logic gốc từ script 3)
+-- BAT: Size expander
+-- ============================================
+
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local TeleportService = game:GetService("TeleportService")
+local HttpService = game:GetService("HttpService")
+local UIS = game:GetService("UserInputService")
+
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+-- ============================================
+-- BIẾN
+-- ============================================
+
+local AUTO_ENABLED = _G.AutoEventEnabled or false
+local isAutoRunning = false
+
+local ARCADE_ENABLED = _G.ArcadeEventEnabled or false
+local arcadeRunning = false
+
+local BAT_ENABLED = true
+local SIZE_MULTIPLIER = 10
+local MIN_SIZE = 1
+local MAX_SIZE = 1000
+local originalSizes = {}
+local currentTool = nil
+
+-- Money Event
+local CONFIG = {
+    VERIFY_TIME = 15,
+    VERIFY_RADIUS = 5,
+    OSCILLATION = 0.15,
+    OSCILLATION_SPEED = 0.8,
+    DETECTION_PATTERNS = {
+        "Bonus:",
+        "completed",
+        "this",
+        "Thưởng thêm",
+    },
+}
+
+local TARGETS = {
+    {name = "A", x = 425.7, y = -10.5, z = -340},
+    {name = "C", x = 1132.37, y = 3.9, z = 529},
+    {name = "B", x = 2571, y = -5.44, z = -337.7}
+}
+
+local MONEY_EVENT_ICON = "rbxassetid://109664817855554"
+
+-- Arcade Collect (LOGIC GỐC)
+local FLY_SPEED = 300
+local A = Vector3.new(153, 4.15, -140)
+local B = Vector3.new(4027, -1, -135)
+local AB = B - A
+local BOX_MIN = Vector3.new(153, -4, -140)
+local BOX_MAX = Vector3.new(4055, 10, 135)
+local SAFE_RADIUS = 100
+local COLLECT_RADIUS = 300
+local bodyVelocity = nil
+
+-- ============================================
+-- UI
+-- ============================================
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "MoneyEventSystem"
+screenGui.ResetOnSpawn = false
+screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+screenGui.Parent = playerGui
+
+local mainFrame = Instance.new("Frame")
+mainFrame.Name = "MainFrame"
+mainFrame.Size = UDim2.new(0, 280, 0, 200)
+mainFrame.Position = UDim2.new(1, -290, 0, 10)
+mainFrame.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+mainFrame.BackgroundTransparency = 0.1
+mainFrame.BorderSizePixel = 0
+mainFrame.Active = true
+mainFrame.Draggable = true
+mainFrame.Parent = screenGui
+
+local mainCorner = Instance.new("UICorner")
+mainCorner.CornerRadius = UDim.new(0, 10)
+mainCorner.Parent = mainFrame
+
+local mainStroke = Instance.new("UIStroke")
+mainStroke.Color = Color3.fromRGB(60, 60, 60)
+mainStroke.Thickness = 2
+mainStroke.Parent = mainFrame
+
+local header = Instance.new("Frame")
+header.Size = UDim2.new(1, 0, 0, 35)
+header.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+header.BorderSizePixel = 0
+header.Parent = mainFrame
+
+local headerCorner = Instance.new("UICorner")
+headerCorner.CornerRadius = UDim.new(0, 10)
+headerCorner.Parent = header
+
+local headerFix = Instance.new("Frame")
+headerFix.Size = UDim2.new(1, 0, 0, 18)
+headerFix.Position = UDim2.new(0, 0, 1, -18)
+headerFix.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+headerFix.BorderSizePixel = 0
+headerFix.Parent = header
+
+local titleLabel = Instance.new("TextLabel")
+titleLabel.Size = UDim2.new(1, -40, 1, 0)
+titleLabel.Position = UDim2.new(0, 10, 0, 0)
+titleLabel.BackgroundTransparency = 1
+titleLabel.Text = "Auto Event"
+titleLabel.TextColor3 = Color3.fromRGB(255, 215, 0)
+titleLabel.TextSize = 14
+titleLabel.Font = Enum.Font.GothamBold
+titleLabel.TextXAlignment = Enum.TextXAlignment.Left
+titleLabel.Parent = header
+
+local closeBtn = Instance.new("TextButton")
+closeBtn.Size = UDim2.new(0, 30, 0, 30)
+closeBtn.Position = UDim2.new(1, -33, 0, 2.5)
+closeBtn.BackgroundColor3 = Color3.fromRGB(200, 60, 60)
+closeBtn.Text = "×"
+closeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+closeBtn.TextSize = 18
+closeBtn.Font = Enum.Font.GothamBold
+closeBtn.BorderSizePixel = 0
+closeBtn.Parent = header
+
+local closeBtnCorner = Instance.new("UICorner")
+closeBtnCorner.CornerRadius = UDim.new(0, 6)
+closeBtnCorner.Parent = closeBtn
+
+local scrollFrame = Instance.new("ScrollingFrame")
+scrollFrame.Size = UDim2.new(1, -20, 1, -45)
+scrollFrame.Position = UDim2.new(0, 10, 0, 40)
+scrollFrame.BackgroundTransparency = 1
+scrollFrame.BorderSizePixel = 0
+scrollFrame.ScrollBarThickness = 4
+scrollFrame.ScrollBarImageColor3 = Color3.fromRGB(255, 215, 0)
+scrollFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
+scrollFrame.Parent = mainFrame
+
+local contentFrame = Instance.new("Frame")
+contentFrame.Size = UDim2.new(1, 0, 0, 0)
+contentFrame.BackgroundTransparency = 1
+contentFrame.Parent = scrollFrame
+
+local listLayout = Instance.new("UIListLayout")
+listLayout.SortOrder = Enum.SortOrder.LayoutOrder
+listLayout.Padding = UDim.new(0, 8)
+listLayout.Parent = contentFrame
+
+listLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+    contentFrame.Size = UDim2.new(1, 0, 0, listLayout.AbsoluteContentSize.Y)
+    scrollFrame.CanvasSize = UDim2.new(0, 0, 0, listLayout.AbsoluteContentSize.Y + 10)
+end)
+
+-- ============================================
+-- EVENT MONEY BUTTON
+-- ============================================
+
+local eventMoneyBtn = Instance.new("TextButton")
+eventMoneyBtn.Name = "EventMoneyBtn"
+eventMoneyBtn.Size = UDim2.new(1, 0, 0, 35)
+eventMoneyBtn.BackgroundColor3 = Color3.fromRGB(60, 50, 20)
+eventMoneyBtn.Text = ""
+eventMoneyBtn.BorderSizePixel = 0
+eventMoneyBtn.LayoutOrder = 1
+eventMoneyBtn.Parent = contentFrame
+
+local btnCorner = Instance.new("UICorner")
+btnCorner.CornerRadius = UDim.new(0, 8)
+btnCorner.Parent = eventMoneyBtn
+
+local btnStroke = Instance.new("UIStroke")
+btnStroke.Color = Color3.fromRGB(255, 215, 0)
+btnStroke.Thickness = 1.5
+btnStroke.Parent = eventMoneyBtn
+
+local btnLabel = Instance.new("TextLabel")
+btnLabel.Size = UDim2.new(1, -50, 1, 0)
+btnLabel.Position = UDim2.new(0, 10, 0, 0)
+btnLabel.BackgroundTransparency = 1
+btnLabel.Text = "💰 Event Money"
+btnLabel.TextColor3 = Color3.fromRGB(255, 215, 0)
+btnLabel.TextSize = 13
+btnLabel.Font = Enum.Font.GothamBold
+btnLabel.TextXAlignment = Enum.TextXAlignment.Left
+btnLabel.Parent = eventMoneyBtn
+
+local statusIndicator = Instance.new("TextLabel")
+statusIndicator.Name = "StatusIndicator"
+statusIndicator.Size = UDim2.new(0, 40, 0, 20)
+statusIndicator.Position = UDim2.new(1, -50, 0.5, -10)
+statusIndicator.BackgroundColor3 = Color3.fromRGB(200, 60, 60)
+statusIndicator.Text = "OFF"
+statusIndicator.TextColor3 = Color3.fromRGB(255, 255, 255)
+statusIndicator.TextSize = 10
+statusIndicator.Font = Enum.Font.GothamBold
+statusIndicator.BorderSizePixel = 0
+statusIndicator.Parent = eventMoneyBtn
+
+local indicatorCorner = Instance.new("UICorner")
+indicatorCorner.CornerRadius = UDim.new(0, 5)
+indicatorCorner.Parent = statusIndicator
+
+local timerDisplay = Instance.new("Frame")
+timerDisplay.Size = UDim2.new(1, 0, 0, 30)
+timerDisplay.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+timerDisplay.BorderSizePixel = 0
+timerDisplay.Visible = false
+timerDisplay.LayoutOrder = 2
+timerDisplay.Parent = contentFrame
+
+local timerCorner = Instance.new("UICorner")
+timerCorner.CornerRadius = UDim.new(0, 6)
+timerCorner.Parent = timerDisplay
+
+local timerLabel = Instance.new("TextLabel")
+timerLabel.Name = "TimerLabel"
+timerLabel.Size = UDim2.new(1, -10, 1, 0)
+timerLabel.Position = UDim2.new(0, 5, 0, 0)
+timerLabel.BackgroundTransparency = 1
+timerLabel.Font = Enum.Font.GothamBold
+timerLabel.TextSize = 12
+timerLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+timerLabel.Text = "Waiting..."
+timerLabel.TextXAlignment = Enum.TextXAlignment.Center
+timerLabel.RichText = true
+timerLabel.Parent = timerDisplay
+
+local statusDisplay = Instance.new("Frame")
+statusDisplay.Size = UDim2.new(1, 0, 0, 50)
+statusDisplay.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+statusDisplay.BorderSizePixel = 0
+statusDisplay.Visible = false
+statusDisplay.LayoutOrder = 3
+statusDisplay.Parent = contentFrame
+
+local statusCorner = Instance.new("UICorner")
+statusCorner.CornerRadius = UDim.new(0, 6)
+statusCorner.Parent = statusDisplay
+
+local statusText = Instance.new("TextLabel")
+statusText.Name = "StatusText"
+statusText.Size = UDim2.new(1, -10, 0, 20)
+statusText.Position = UDim2.new(0, 5, 0, 5)
+statusText.BackgroundTransparency = 1
+statusText.Text = "Sẵn sàng..."
+statusText.TextColor3 = Color3.fromRGB(200, 200, 200)
+statusText.TextSize = 10
+statusText.Font = Enum.Font.Gotham
+statusText.TextXAlignment = Enum.TextXAlignment.Left
+statusText.Parent = statusDisplay
+
+local progressBg = Instance.new("Frame")
+progressBg.Size = UDim2.new(1, -10, 0, 18)
+progressBg.Position = UDim2.new(0, 5, 0, 27)
+progressBg.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+progressBg.BorderSizePixel = 0
+progressBg.Parent = statusDisplay
+
+local progCorner = Instance.new("UICorner")
+progCorner.CornerRadius = UDim.new(0, 5)
+progCorner.Parent = progressBg
+
+local progressFill = Instance.new("Frame")
+progressFill.Name = "ProgressFill"
+progressFill.Size = UDim2.new(0, 0, 1, 0)
+progressFill.BackgroundColor3 = Color3.fromRGB(80, 150, 255)
+progressFill.BorderSizePixel = 0
+progressFill.Parent = progressBg
+
+local progFillCorner = Instance.new("UICorner")
+progFillCorner.CornerRadius = UDim.new(0, 5)
+progFillCorner.Parent = progressFill
+
+local progressText = Instance.new("TextLabel")
+progressText.Name = "ProgressText"
+progressText.Size = UDim2.new(1, 0, 1, 0)
+progressText.BackgroundTransparency = 1
+progressText.Text = "0%"
+progressText.TextColor3 = Color3.fromRGB(255, 255, 255)
+progressText.TextSize = 9
+progressText.Font = Enum.Font.GothamBold
+progressText.ZIndex = 2
+progressText.Parent = progressBg
+
+-- ============================================
+-- ARCADE EVENT BUTTON (GIỐNG MONEY EVENT)
+-- ============================================
+
+local arcadeBtn = Instance.new("TextButton")
+arcadeBtn.Name = "ArcadeBtn"
+arcadeBtn.Size = UDim2.new(1, 0, 0, 35)
+arcadeBtn.BackgroundColor3 = Color3.fromRGB(40, 30, 50)
+arcadeBtn.Text = ""
+arcadeBtn.BorderSizePixel = 0
+arcadeBtn.LayoutOrder = 4
+arcadeBtn.Parent = contentFrame
+
+local arcadeBtnCorner = Instance.new("UICorner")
+arcadeBtnCorner.CornerRadius = UDim.new(0, 8)
+arcadeBtnCorner.Parent = arcadeBtn
+
+local arcadeBtnStroke = Instance.new("UIStroke")
+arcadeBtnStroke.Color = Color3.fromRGB(138, 43, 226)
+arcadeBtnStroke.Thickness = 1.5
+arcadeBtnStroke.Parent = arcadeBtn
+
+local arcadeBtnLabel = Instance.new("TextLabel")
+arcadeBtnLabel.Size = UDim2.new(1, -50, 1, 0)
+arcadeBtnLabel.Position = UDim2.new(0, 10, 0, 0)
+arcadeBtnLabel.BackgroundTransparency = 1
+arcadeBtnLabel.Text = "🎮 Arcade Event"
+arcadeBtnLabel.TextColor3 = Color3.fromRGB(138, 43, 226)
+arcadeBtnLabel.TextSize = 13
+arcadeBtnLabel.Font = Enum.Font.GothamBold
+arcadeBtnLabel.TextXAlignment = Enum.TextXAlignment.Left
+arcadeBtnLabel.Parent = arcadeBtn
+
+local arcadeStatusIndicator = Instance.new("TextLabel")
+arcadeStatusIndicator.Name = "ArcadeStatusIndicator"
+arcadeStatusIndicator.Size = UDim2.new(0, 40, 0, 20)
+arcadeStatusIndicator.Position = UDim2.new(1, -50, 0.5, -10)
+arcadeStatusIndicator.BackgroundColor3 = Color3.fromRGB(200, 60, 60)
+arcadeStatusIndicator.Text = "OFF"
+arcadeStatusIndicator.TextColor3 = Color3.fromRGB(255, 255, 255)
+arcadeStatusIndicator.TextSize = 10
+arcadeStatusIndicator.Font = Enum.Font.GothamBold
+arcadeStatusIndicator.BorderSizePixel = 0
+arcadeStatusIndicator.Parent = arcadeBtn
+
+local arcadeIndicatorCorner = Instance.new("UICorner")
+arcadeIndicatorCorner.CornerRadius = UDim.new(0, 5)
+arcadeIndicatorCorner.Parent = arcadeStatusIndicator
+
+local arcadeTimerDisplay = Instance.new("Frame")
+arcadeTimerDisplay.Size = UDim2.new(1, 0, 0, 30)
+arcadeTimerDisplay.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+arcadeTimerDisplay.BorderSizePixel = 0
+arcadeTimerDisplay.Visible = false
+arcadeTimerDisplay.LayoutOrder = 5
+arcadeTimerDisplay.Parent = contentFrame
+
+local arcadeTimerCorner = Instance.new("UICorner")
+arcadeTimerCorner.CornerRadius = UDim.new(0, 6)
+arcadeTimerCorner.Parent = arcadeTimerDisplay
+
+local arcadeTimerLabel = Instance.new("TextLabel")
+arcadeTimerLabel.Name = "ArcadeTimerLabel"
+arcadeTimerLabel.Size = UDim2.new(1, -10, 1, 0)
+arcadeTimerLabel.Position = UDim2.new(0, 5, 0, 0)
+arcadeTimerLabel.BackgroundTransparency = 1
+arcadeTimerLabel.Font = Enum.Font.GothamBold
+arcadeTimerLabel.TextSize = 12
+arcadeTimerLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+arcadeTimerLabel.Text = "Waiting..."
+arcadeTimerLabel.TextXAlignment = Enum.TextXAlignment.Center
+arcadeTimerLabel.RichText = true
+arcadeTimerLabel.Parent = arcadeTimerDisplay
+
+-- ============================================
+-- BAT BUTTON
+-- ============================================
+
+local batBtn = Instance.new("TextButton")
+batBtn.Name = "BatBtn"
+batBtn.Size = UDim2.new(1, 0, 0, 35)
+batBtn.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+batBtn.Text = ""
+batBtn.BorderSizePixel = 0
+batBtn.LayoutOrder = 6
+batBtn.Parent = contentFrame
+
+local batBtnCorner = Instance.new("UICorner")
+batBtnCorner.CornerRadius = UDim.new(0, 8)
+batBtnCorner.Parent = batBtn
+
+local batBtnStroke = Instance.new("UIStroke")
+batBtnStroke.Color = Color3.fromRGB(100, 100, 100)
+batBtnStroke.Thickness = 1.5
+batBtnStroke.Parent = batBtn
+
+local batBtnLabel = Instance.new("TextLabel")
+batBtnLabel.Size = UDim2.new(1, -50, 1, 0)
+batBtnLabel.Position = UDim2.new(0, 10, 0, 0)
+batBtnLabel.BackgroundTransparency = 1
+batBtnLabel.Text = "Gậy Khủng Bố"
+batBtnLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
+batBtnLabel.TextSize = 13
+batBtnLabel.Font = Enum.Font.GothamBold
+batBtnLabel.TextXAlignment = Enum.TextXAlignment.Left
+batBtnLabel.Parent = batBtn
+
+local batStatusIndicator = Instance.new("TextLabel")
+batStatusIndicator.Name = "BatStatusIndicator"
+batStatusIndicator.Size = UDim2.new(0, 40, 0, 20)
+batStatusIndicator.Position = UDim2.new(1, -50, 0.5, -10)
+batStatusIndicator.BackgroundColor3 = Color3.fromRGB(60, 200, 60)
+batStatusIndicator.Text = "ON"
+batStatusIndicator.TextColor3 = Color3.fromRGB(255, 255, 255)
+batStatusIndicator.TextSize = 10
+batStatusIndicator.Font = Enum.Font.GothamBold
+batStatusIndicator.BorderSizePixel = 0
+batStatusIndicator.Parent = batBtn
+
+local batIndicatorCorner = Instance.new("UICorner")
+batIndicatorCorner.CornerRadius = UDim.new(0, 5)
+batIndicatorCorner.Parent = batStatusIndicator
+
+local batSettings = Instance.new("Frame")
+batSettings.Size = UDim2.new(1, 0, 0, 55)
+batSettings.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+batSettings.BorderSizePixel = 0
+batSettings.Visible = true
+batSettings.LayoutOrder = 7
+batSettings.Parent = contentFrame
+
+local batSettingsCorner = Instance.new("UICorner")
+batSettingsCorner.CornerRadius = UDim.new(0, 6)
+batSettingsCorner.Parent = batSettings
+
+local sizeLabel = Instance.new("TextLabel")
+sizeLabel.Size = UDim2.new(1, -16, 0, 14)
+sizeLabel.Position = UDim2.new(0, 8, 0, 8)
+sizeLabel.BackgroundTransparency = 1
+sizeLabel.Font = Enum.Font.Gotham
+sizeLabel.TextSize = 11
+sizeLabel.TextColor3 = Color3.fromRGB(150, 150, 150)
+sizeLabel.TextXAlignment = Enum.TextXAlignment.Left
+sizeLabel.Text = "Size: x" .. SIZE_MULTIPLIER
+sizeLabel.Parent = batSettings
+
+local TRACK_W = 244
+local track = Instance.new("Frame")
+track.Size = UDim2.new(0, TRACK_W, 0, 6)
+track.Position = UDim2.new(0, 8, 0, 30)
+track.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+track.BorderSizePixel = 0
+track.Parent = batSettings
+
+local trackCorner = Instance.new("UICorner")
+trackCorner.CornerRadius = UDim.new(0, 3)
+trackCorner.Parent = track
+
+local fill = Instance.new("Frame")
+fill.Size = UDim2.new(0, 0, 1, 0)
+fill.BackgroundColor3 = Color3.fromRGB(200, 200, 200)
+fill.BorderSizePixel = 0
+fill.Parent = track
+
+local fillCorner = Instance.new("UICorner")
+fillCorner.CornerRadius = UDim.new(0, 3)
+fillCorner.Parent = fill
+
+local thumb = Instance.new("Frame")
+thumb.Size = UDim2.new(0, 12, 0, 18)
+thumb.AnchorPoint = Vector2.new(0.5, 0.5)
+thumb.BackgroundColor3 = Color3.fromRGB(230, 230, 230)
+thumb.BorderSizePixel = 0
+thumb.Parent = track
+
+local thumbCorner = Instance.new("UICorner")
+thumbCorner.CornerRadius = UDim.new(0, 4)
+thumbCorner.Parent = thumb
+
+-- ============================================
+-- BAT LOGIC
+-- ============================================
+
+local function ratioFromSize(s)
+    return math.log(s / MIN_SIZE) / math.log(MAX_SIZE / MIN_SIZE)
+end
+
+local function sizeFromRatio(r)
+    return math.floor(MIN_SIZE * (MAX_SIZE / MIN_SIZE) ^ r + 0.5)
+end
+
+local function updateSlider()
+    local px = math.clamp(ratioFromSize(SIZE_MULTIPLIER) * TRACK_W, 0, TRACK_W)
+    fill.Size = UDim2.new(0, px, 1, 0)
+    thumb.Position = UDim2.new(0, px, 0.5, 0)
+    sizeLabel.Text = "Size: x" .. SIZE_MULTIPLIER
+end
+
+local function expandTool(tool)
+    if not BAT_ENABLED then return end
+    for _, part in ipairs(tool:GetDescendants()) do
+        if part:IsA("BasePart") then
+            if not originalSizes[part] then
+                originalSizes[part] = part.Size
+            end
+            part.Size = originalSizes[part] * SIZE_MULTIPLIER
+        end
+    end
+end
+
+local function restoreTool(tool)
+    for _, part in ipairs(tool:GetDescendants()) do
+        if part:IsA("BasePart") and originalSizes[part] then
+            part.Size = originalSizes[part]
+            originalSizes[part] = nil
+        end
+    end
+end
+
+local function applyMultiplier()
+    if BAT_ENABLED and currentTool then
+        restoreTool(currentTool)
+        originalSizes = {}
+        task.wait(0.05)
+        expandTool(currentTool)
+    end
+end
+
+local sliding = false
+local function setFromX(absX)
+    local ratio = math.clamp((absX - track.AbsolutePosition.X) / TRACK_W, 0, 1)
+    SIZE_MULTIPLIER = math.clamp(sizeFromRatio(ratio), MIN_SIZE, MAX_SIZE)
+    updateSlider()
+    applyMultiplier()
+end
+
+track.InputBegan:Connect(function(i)
+    if i.UserInputType == Enum.UserInputType.MouseButton1 then
+        sliding = true
+        setFromX(i.Position.X)
+    end
+end)
+
+track.InputEnded:Connect(function(i)
+    if i.UserInputType == Enum.UserInputType.MouseButton1 then
+        sliding = false
+    end
+end)
+
+UIS.InputEnded:Connect(function(i)
+    if i.UserInputType == Enum.UserInputType.MouseButton1 then
+        sliding = false
+    end
+end)
+
+UIS.InputChanged:Connect(function(i)
+    if sliding and i.UserInputType == Enum.UserInputType.MouseMovement then
+        setFromX(i.Position.X)
+    end
+end)
+
+local function setupChar(char)
+    char.ChildAdded:Connect(function(tool)
+        if tool:IsA("Tool") then
+            currentTool = tool
+            task.wait(0.1)
+            expandTool(tool)
+        end
+    end)
+    char.ChildRemoved:Connect(function(tool)
+        if tool:IsA("Tool") then
+            restoreTool(tool)
+            currentTool = nil
+        end
+    end)
+end
+
+if player.Character then
+    setupChar(player.Character)
+end
+
+player.CharacterAdded:Connect(function(newChar)
+    setupChar(newChar)
+end)
+
+batBtn.MouseButton1Click:Connect(function()
+    BAT_ENABLED = not BAT_ENABLED
+    if BAT_ENABLED then
+        batStatusIndicator.Text = "ON"
+        batStatusIndicator.BackgroundColor3 = Color3.fromRGB(60, 200, 60)
+        batBtnStroke.Color = Color3.fromRGB(60, 200, 60)
+        batSettings.Visible = true
+        if currentTool then expandTool(currentTool) end
+    else
+        batStatusIndicator.Text = "OFF"
+        batStatusIndicator.BackgroundColor3 = Color3.fromRGB(200, 60, 60)
+        batBtnStroke.Color = Color3.fromRGB(100, 100, 100)
+        batSettings.Visible = false
+        if currentTool then restoreTool(currentTool) end
+    end
+end)
+
+-- ============================================
+-- MONEY EVENT LOGIC (GỐC)
+-- ============================================
+
+local function formatTime(totalSeconds)
+    if totalSeconds <= 0 then return "00:00" end
+    local minutes = math.floor(totalSeconds / 60)
+    local seconds = totalSeconds % 60
+    return string.format("%02d:%02d", minutes, seconds)
+end
+
+local function getMoneyEventTime()
+    local success, result = pcall(function()
+        local eventTimers = workspace:FindFirstChild("EventTimers")
+        if not eventTimers then return nil end
+        
+        for _, part in pairs(eventTimers:GetChildren()) do
+            if part:IsA("BasePart") then
+                local surfaceGui = part:FindFirstChild("SurfaceGui")
+                if surfaceGui then
+                    local frame = surfaceGui:FindFirstChild("Frame")
+                    if frame then
+                        for _, textLabel in pairs(frame:GetChildren()) do
+                            if textLabel:IsA("TextLabel") then
+                                local text = textLabel.Text
+                                if text:upper():find("MONEY") then
+                                    local timePattern = "(%d+):(%d+)"
+                                    local time1, time2 = text:match(timePattern)
+                                    if time1 and time2 then
+                                        local minutes = tonumber(time1)
+                                        local seconds = tonumber(time2)
+                                        local totalSeconds = minutes * 60 + seconds
+                                        return {
+                                            minutes = minutes,
+                                            seconds = seconds,
+                                            totalSeconds = totalSeconds,
+                                            rawText = text
+                                        }
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        end
+        return nil
+    end)
+    
+    if success and result then return result end
+    return nil
+end
+
+local function getActiveEventTime()
+    local success, result = pcall(function()
+        local hud = player.PlayerGui:FindFirstChild("HUD")
+        if not hud then return nil end
+        
+        local bottomRight = hud:FindFirstChild("BottomRight")
+        if not bottomRight then return nil end
+        
+        local buffs = bottomRight:FindFirstChild("Buffs")
+        if not buffs then return nil end
+        
+        for _, template in pairs(buffs:GetChildren()) do
+            if template:IsA("ImageButton") then
+                if template.Image == MONEY_EVENT_ICON then
+                    local label = template:FindFirstChild("Label")
+                    if label and label:IsA("TextLabel") and label.Visible then
+                        local text = label.Text
+                        if text:match("%d+:%d+") and text ~= "00:00" then
+                            local timePattern = "(%d+):(%d+)"
+                            local minutes, seconds = text:match(timePattern)
+                            if minutes and seconds then
+                                local totalSeconds = tonumber(minutes) * 60 + tonumber(seconds)
+                                if totalSeconds > 0 and totalSeconds <= 600 then
+                                    return {
+                                        minutes = tonumber(minutes),
+                                        seconds = tonumber(seconds),
+                                        totalSeconds = totalSeconds,
+                                        isActive = true,
+                                        source = label:GetFullName()
+                                    }
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        end
+        return nil
+    end)
+    
+    if success and result then return result end
+    return nil
+end
+
+local function updateTimer()
+    if not AUTO_ENABLED then
+        timerDisplay.Visible = false
+        statusDisplay.Visible = false
+        return
+    end
+    
+    local upcomingEvent = getMoneyEventTime()
+    local activeEvent = getActiveEventTime()
+    
+    if activeEvent then
+        local displayTime = formatTime(activeEvent.totalSeconds)
+        timerLabel.Text = string.format('<font color="#00FF00">ACTIVE</font> <font color="#888">▸</font> <font color="#00FF00">%s</font>', displayTime)
+        timerDisplay.BackgroundColor3 = Color3.fromRGB(20, 50, 20)
+        timerDisplay.Visible = true
+        
+        if not isAutoRunning then
+            startAutoFarm()
+        end
+    elseif upcomingEvent then
+        local displayTime = formatTime(upcomingEvent.totalSeconds)
+        timerLabel.Text = string.format('<font color="#FFD700">MONEY</font> <font color="#888">▸</font> <font color="#FFD700">%s</font>', displayTime)
+        
+        if upcomingEvent.totalSeconds <= 60 then
+            timerDisplay.BackgroundColor3 = Color3.fromRGB(50, 20, 20)
+        elseif upcomingEvent.totalSeconds <= 300 then
+            timerDisplay.BackgroundColor3 = Color3.fromRGB(40, 30, 20)
+        else
+            timerDisplay.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+        end
+        timerDisplay.Visible = true
+    else
+        timerLabel.Text = '<font color="#888">Waiting...</font>'
+        timerDisplay.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+        timerDisplay.Visible = true
+    end
+end
+
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local humanoid = character:WaitForChild("Humanoid")
+local noclipConnection = nil
+local currentTargetIndex = 1
+local completedTargets = {}
+local startTime = 0
+local isPaused = false
+local detectedNotification = false
+local skipRequested = false
+local previousGUITexts = {}
+local detectionCounter = 0
+local currentDetectionCounter = 0
+local lastActivityTime = tick()
+local watchdogConnection = nil
+local notificationConnection = nil
+
+local function enableNoclip()
+    if noclipConnection then return end
+    noclipConnection = RunService.Stepped:Connect(function()
+        if not isAutoRunning then return end
+        for _, part in pairs(character:GetDescendants()) do
+            if part:IsA("BasePart") then
+                part.CanCollide = false
+            end
+        end
+    end)
+end
+
+local function disableNoclip()
+    if noclipConnection then
+        noclipConnection:Disconnect()
+        noclipConnection = nil
+    end
+end
+
+local function updateFarmUI(statusStr)
+    if statusStr then statusText.Text = statusStr end
+end
+
+local function updateProgress(percent)
+    progressText.Text = string.format("%d%%", math.floor(percent))
+    progressFill:TweenSize(
+        UDim2.new(percent / 100, 0, 1, 0),
+        Enum.EasingDirection.Out,
+        Enum.EasingStyle.Quad,
+        0.2,
+        true
+    )
+end
+
+local function teleportTo(x, y, z)
+    for _, part in pairs(character:GetDescendants()) do
+        if part:IsA("BasePart") then
+            part.CanCollide = false
+        end
+    end
+    
+    humanoidRootPart.CFrame = CFrame.new(x, y, z)
+    humanoidRootPart.Velocity = Vector3.new(0, 0, 0)
+    humanoidRootPart.RotVelocity = Vector3.new(0, 0, 0)
+    humanoidRootPart.AssemblyLinearVelocity = Vector3.new(0, 0, 0)
+    humanoidRootPart.AssemblyAngularVelocity = Vector3.new(0, 0, 0)
+end
+
+local function setFakeWalking(enabled)
+    if enabled then
+        humanoid.WalkSpeed = 16
+    else
+        humanoid.WalkSpeed = 16
+    end
+end
+
+local function checkForNotification()
+    for _, gui in pairs(player.PlayerGui:GetDescendants()) do
+        if gui:IsA("TextLabel") and gui.Visible and gui.Parent then
+            local text = gui.Text
+            local fullName = gui:GetFullName()
+            
+            if text and text ~= "" and #text > 10 then
+                local hasPattern = false
+                
+                for _, pattern in ipairs(CONFIG.DETECTION_PATTERNS) do
+                    if string.find(text, pattern) then
+                        hasPattern = true
+                        break
+                    end
+                end
+                
+                if hasPattern then
+                    local pos = gui.AbsolutePosition
+                    local size = gui.AbsoluteSize
+                    local screenCenter = workspace.CurrentCamera.ViewportSize / 2
+                    
+                    local distFromCenter = math.abs(pos.X + size.X/2 - screenCenter.X) + math.abs(pos.Y + size.Y/2 - screenCenter.Y)
+                    
+                    if distFromCenter < 400 then
+                        local lastCounter = previousGUITexts[fullName]
+                        
+                        if not lastCounter or lastCounter < currentDetectionCounter then
+                            previousGUITexts[fullName] = currentDetectionCounter
+                            return true, text
+                        end
+                    end
+                end
+            end
+        end
+    end
+    return false, nil
+end
+
+local function resetWatchdog()
+    lastActivityTime = tick()
+end
+
+local function startWatchdog()
+    if watchdogConnection then return end
+    watchdogConnection = RunService.Heartbeat:Connect(function()
+        if not isAutoRunning then return end
+        if tick() - lastActivityTime > 30 then
+            updateFarmUI("Phát hiện đơ - Khởi động lại")
+            lastActivityTime = tick()
+            stopNotificationListener()
+            disableNoclip()
+            task.wait(2)
+            if currentTargetIndex > #TARGETS then
+                currentTargetIndex = 1
+                completedTargets = {}
+            end
+            executeAutoFarm()
+        end
+    end)
+end
+
+local function stopWatchdog()
+    if watchdogConnection then
+        watchdogConnection:Disconnect()
+        watchdogConnection = nil
+    end
+end
+
+local function startNotificationListener()
+    if notificationConnection then return end
+    detectedNotification = false
+    
+    notificationConnection = RunService.Heartbeat:Connect(function()
+        if detectedNotification then return end
+        
+        local found, text = checkForNotification()
+        if found then
+            detectedNotification = true
+            updateFarmUI(string.format("Phát hiện: %s", text:sub(1, 20)))
+        end
+    end)
+end
+
+local function stopNotificationListener()
+    if notificationConnection then
+        notificationConnection:Disconnect()
+        notificationConnection = nil
+    end
+end
+
+local function oscillateAtPoint(x, y, z, maxDuration)
+    local oscillationTime = 0
+    local startTime = tick()
+    detectedNotification = false
+    
+    previousGUITexts = {}
+    
+    detectionCounter = detectionCounter + 1
+    currentDetectionCounter = detectionCounter
+    
+    task.wait(1.5)
+    
+    startNotificationListener()
+    setFakeWalking(true)
+    resetWatchdog()
+    
+    while not detectedNotification and isAutoRunning do
+        resetWatchdog()
+        
+        if skipRequested then break end
+        if tick() - startTime > maxDuration then
+            updateFarmUI("Timeout - Chuyển điểm")
+            break
+        end
+        
+        if not character or not character.Parent then
+            updateFarmUI("Nhân vật mất!")
+            stopNotificationListener()
+            return false
+        end
+        
+        local humanoidCheck = character:FindFirstChildOfClass("Humanoid")
+        if not humanoidCheck or humanoidCheck.Health <= 0 then
+            updateFarmUI("Nhân vật chết!")
+            stopNotificationListener()
+            return false
+        end
+        
+        local currentPos = humanoidRootPart.Position
+        local targetPos = Vector3.new(x, y, z)
+        local dist = (currentPos - targetPos).Magnitude
+        
+        if dist > CONFIG.VERIFY_RADIUS then
+            updateFarmUI("Bị dật xa, tele lại...")
+            teleportTo(x, y + 2, z)
+            oscillationTime = 0
+        else
+            oscillationTime = oscillationTime + 0.1
+            local offsetX = math.sin(oscillationTime * CONFIG.OSCILLATION_SPEED) * CONFIG.OSCILLATION
+            local offsetZ = math.cos(oscillationTime * CONFIG.OSCILLATION_SPEED) * CONFIG.OSCILLATION
+            teleportTo(x + offsetX, y + 2, z + offsetZ)
+            local elapsed = tick() - startTime
+            updateFarmUI(string.format("Chờ thông báo... %.1fs", elapsed))
+        end
+        
+        task.wait(0.1)
+    end
+    
+    stopNotificationListener()
+    setFakeWalking(false)
+    teleportTo(x, y + 2, z)
+    return detectedNotification
+end
+
+function executeAutoFarm()
+    if not AUTO_ENABLED or not isAutoRunning then return end
+    
+    enableNoclip()
+    startWatchdog()
+    resetWatchdog()
+    
+    if startTime == 0 then
+        startTime = tick()
+    end
+    
+    while currentTargetIndex <= #TARGETS and isAutoRunning and AUTO_ENABLED do
+        resetWatchdog()
+        local target = TARGETS[currentTargetIndex]
+        
+        if completedTargets[target.name] then
+            currentTargetIndex = currentTargetIndex + 1
+            continue
+        end
+        
+        updateProgress(((currentTargetIndex - 1) / #TARGETS) * 100)
+        updateFarmUI(string.format("Tele đến %s", target.name))
+        
+        enableNoclip()
+        task.wait(0.1)
+        teleportTo(target.x, target.y + 2, target.z)
+        task.wait(0.2)
+        
+        local verified = oscillateAtPoint(target.x, target.y, target.z, CONFIG.VERIFY_TIME)
+        
+        if skipRequested then
+            skipRequested = false
+            completedTargets[target.name] = true
+            updateFarmUI(string.format("Bỏ qua %s", target.name))
+            updateProgress((currentTargetIndex / #TARGETS) * 100)
+            task.wait(0.5)
+            currentTargetIndex = currentTargetIndex + 1
+        elseif verified then
+            completedTargets[target.name] = true
+            updateFarmUI(string.format("Xong %s!", target.name))
+            updateProgress((currentTargetIndex / #TARGETS) * 100)
+            
+            currentTargetIndex = currentTargetIndex + 1
+            
+            updateFarmUI("Reset để tránh bug thông báo...")
+            task.wait(0.5)
+            humanoid.Health = 0
+        else
+            updateFarmUI(string.format("Timeout %s - Làm lại", target.name))
+            task.wait(0.5)
+        end
+    end
+    
+    local completedCount = 0
+    for _ in pairs(completedTargets) do
+        completedCount = completedCount + 1
+    end
+    
+    if completedCount >= #TARGETS then
+        updateProgress(100)
+        updateFarmUI("HOÀN THÀNH! - Đổi server...")
+        task.wait(3)
+        currentTargetIndex = 1
+        completedTargets = {}
+        doServerHop()
+    else
+        updateFarmUI(string.format("Đã xong %d/%d - Làm nốt", completedCount, #TARGETS))
+        task.wait(2)
+        currentTargetIndex = 1
+        executeAutoFarm()
+    end
+    
+    disableNoclip()
+    stopWatchdog()
+    isAutoRunning = false
+end
+
+function startAutoFarm()
+    if isAutoRunning then return end
+    isAutoRunning = true
+    statusDisplay.Visible = true
+    timerDisplay.Visible = false
+    currentTargetIndex = 1
+    completedTargets = {}
+    updateFarmUI("Bắt đầu Auto Farm...")
+    updateProgress(0)
+    task.spawn(executeAutoFarm)
+end
+
+function stopAutoFarm()
+    isAutoRunning = false
+    disableNoclip()
+    stopWatchdog()
+    stopNotificationListener()
+    statusDisplay.Visible = false
+    if AUTO_ENABLED then
+        timerDisplay.Visible = true
+    end
+    updateFarmUI("Đã dừng")
+end
+
+local PlaceId = game.PlaceId
+
+function doServerHop()
+    updateFarmUI("Đang tìm server mới...")
+    
+    local currentJobId = game.JobId
+    local cursor = ""
+    local found = nil
+    
+    repeat
+        local url = "https://games.roblox.com/v1/games/"..PlaceId.."/servers/Public?sortOrder=Asc&limit=100"
+        if cursor ~= "" then
+            url = url .. "&cursor=" .. cursor
+        end
+        
+        local data = HttpService:JSONDecode(game:HttpGet(url))
+        
+        for _, s in ipairs(data.data) do
+            if s.id ~= currentJobId and s.playing < s.maxPlayers then
+                found = s.id
+                break
+            end
+        end
+        
+        cursor = data.nextPageCursor
+    until found or not cursor
+    
+    if found then
+        updateFarmUI("Tìm thấy server! Đang teleport...")
+        task.wait(1)
+        TeleportService:TeleportToPlaceInstance(PlaceId, found)
+    end
+end
+
+local function refreshEventMoneyBtn()
+    if AUTO_ENABLED then
+        statusIndicator.Text = "ON"
+        statusIndicator.BackgroundColor3 = Color3.fromRGB(60, 200, 60)
+        btnStroke.Color = Color3.fromRGB(60, 200, 60)
+        eventMoneyBtn.BackgroundColor3 = Color3.fromRGB(20, 50, 20)
+        timerDisplay.Visible = true
+    else
+        statusIndicator.Text = "OFF"
+        statusIndicator.BackgroundColor3 = Color3.fromRGB(200, 60, 60)
+        btnStroke.Color = Color3.fromRGB(255, 215, 0)
+        eventMoneyBtn.BackgroundColor3 = Color3.fromRGB(60, 50, 20)
+        timerDisplay.Visible = false
+        statusDisplay.Visible = false
+    end
+end
+
+eventMoneyBtn.MouseButton1Click:Connect(function()
+    AUTO_ENABLED = not AUTO_ENABLED
+    _G.AutoEventEnabled = AUTO_ENABLED
+    refreshEventMoneyBtn()
+    
+    if not AUTO_ENABLED then
+        stopAutoFarm()
+    end
+end)
+
+-- ============================================
+-- ARCADE EVENT LOGIC (COPY GỐC TỪ SCRIPT 3)
+-- ============================================
+
+local function getArcadeEventTime()
+    local success, result = pcall(function()
+        local eventTimers = workspace:FindFirstChild("EventTimers")
+        if not eventTimers then return nil end
+        
+        for _, part in pairs(eventTimers:GetChildren()) do
+            if part:IsA("BasePart") then
+                local surfaceGui = part:FindFirstChild("SurfaceGui")
+                if surfaceGui then
+                    local frame = surfaceGui:FindFirstChild("Frame")
+                    if frame then
+                        for _, textLabel in pairs(frame:GetChildren()) do
+                            if textLabel:IsA("TextLabel") then
+                                local text = textLabel.Text
+                                if text:upper():find("ARCADE") then
+                                    local timePattern = "(%d+):(%d+)"
+                                    local time1, time2 = text:match(timePattern)
+                                    if time1 and time2 then
+                                        local minutes = tonumber(time1)
+                                        local seconds = tonumber(time2)
+                                        local totalSeconds = minutes * 60 + seconds
+                                        return {
+                                            minutes = minutes,
+                                            seconds = seconds,
+                                            totalSeconds = totalSeconds,
+                                            rawText = text
+                                        }
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        end
+        return nil
+    end)
+    
+    if success and result then return result end
+    return nil
+end
+
+local function getActiveArcadeEventTime()
+    local success, result = pcall(function()
+        local hud = player.PlayerGui:FindFirstChild("HUD")
+        if not hud then return nil end
+        
+        local bottomRight = hud:FindFirstChild("BottomRight")
+        if not bottomRight then return nil end
+        
+        local buffs = bottomRight:FindFirstChild("Buffs")
+        if not buffs then return nil end
+        
+        for _, template in pairs(buffs:GetChildren()) do
+            if template:IsA("ImageButton") then
+                local label = template:FindFirstChild("Label")
+                if label and label:IsA("TextLabel") and label.Visible then
+                    local text = label.Text
+                    
+                    if text:match("%d+:%d+") and text ~= "00:00" then
+                        local timePattern = "(%d+):(%d+)"
+                        local minutes, seconds = text:match(timePattern)
+                        
+                        if minutes and seconds then
+                            local totalSeconds = tonumber(minutes) * 60 + tonumber(seconds)
+                            
+                            -- KHÔNG PHẢI Money Event
+                            if template.Image ~= MONEY_EVENT_ICON and totalSeconds > 0 and totalSeconds <= 600 then
+                                return {
+                                    minutes = tonumber(minutes),
+                                    seconds = tonumber(seconds),
+                                    totalSeconds = totalSeconds,
+                                    isActive = true
+                                }
+                            end
+                        end
+                    end
+                end
+            end
+        end
+        return nil
+    end)
+    
+    if success and result then return result end
+    return nil
+end
+
+local function updateArcadeTimer()
+    if not ARCADE_ENABLED then
+        arcadeTimerDisplay.Visible = false
+        return
+    end
+    
+    local upcomingEvent = getArcadeEventTime()
+    local activeEvent = getActiveArcadeEventTime()
+    
+    if activeEvent then
+        local displayTime = formatTime(activeEvent.totalSeconds)
+        arcadeTimerLabel.Text = string.format('<font color="#00FF00">ACTIVE</font> <font color="#888">▸</font> <font color="#00FF00">%s</font>', displayTime)
+        arcadeTimerDisplay.BackgroundColor3 = Color3.fromRGB(20, 50, 20)
+        arcadeTimerDisplay.Visible = true
+        
+        -- CHỈ CHẠY KHI ACTIVE
+        if not arcadeRunning then
+            startArcadeCollect()
+        end
+    elseif upcomingEvent then
+        local displayTime = formatTime(upcomingEvent.totalSeconds)
+        arcadeTimerLabel.Text = string.format('<font color="#8A2BE2">ARCADE</font> <font color="#888">▸</font> <font color="#8A2BE2">%s</font>', displayTime)
+        
+        if upcomingEvent.totalSeconds <= 60 then
+            arcadeTimerDisplay.BackgroundColor3 = Color3.fromRGB(50, 20, 40)
+        elseif upcomingEvent.totalSeconds <= 300 then
+            arcadeTimerDisplay.BackgroundColor3 = Color3.fromRGB(40, 25, 35)
+        else
+            arcadeTimerDisplay.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+        end
+        arcadeTimerDisplay.Visible = true
+        -- UPCOMING = CHỈ HIỆN, KHÔNG CHẠY
+    else
+        arcadeTimerLabel.Text = '<font color="#888">Waiting...</font>'
+        arcadeTimerDisplay.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+        arcadeTimerDisplay.Visible = true
+    end
+end
+
+-- ============================================
+-- ARCADE COLLECT LOGIC (GỐC 100%)
+-- ============================================
+
+local function setupNoFall(character)
+    local hrp = character:WaitForChild("HumanoidRootPart", 5)
+    if not hrp then return end
+    
+    for _, obj in pairs(hrp:GetChildren()) do
+        if obj:IsA("BodyVelocity") then
+            obj:Destroy()
+        end
+    end
+    
+    bodyVelocity = Instance.new("BodyVelocity")
+    bodyVelocity.MaxForce = Vector3.new(0, math.huge, 0)
+    bodyVelocity.Velocity = Vector3.new(0, 0, 0)
+    bodyVelocity.P = 10000
+    bodyVelocity.Parent = hrp
+    
+    for _, part in pairs(character:GetDescendants()) do
+        if part:IsA("BasePart") then
+            part.CanCollide = false
+        end
+    end
+end
+
+local function projectOntoLine(P)
+    local AP = P - A
+    local t = math.clamp(AP:Dot(AB) / AB:Dot(AB), 0, 1)
+    return A + AB * t
+end
+
+local function distanceToLine(P)
+    return (P - projectOntoLine(P)).Magnitude
+end
+
+local overlapParams = OverlapParams.new()
+overlapParams.FilterType = Enum.RaycastFilterType.Include
+
+local function hasTsunami()
+    local hrp = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+    if not hrp or SAFE_RADIUS == 0 then return false end
+    
+    if distanceToLine(hrp.Position) <= 2 then return false end
+    
+    local tsunamis = workspace:FindFirstChild("ActiveTsunamis")
+    if not tsunamis then return false end
+    
+    overlapParams.FilterDescendantsInstances = {tsunamis}
+    
+    local parts = workspace:GetPartBoundsInRadius(hrp.Position, SAFE_RADIUS, overlapParams)
+    
+    return #parts > 0
+end
+
+local function scanItems()
+    local items = {}
+    
+    local region = Region3.new(BOX_MIN, BOX_MAX):ExpandToGrid(4)
+    local parts = workspace:FindPartsInRegion3(region, nil, math.huge)
+    
+    for _, obj in pairs(parts) do
+        local name = obj.Name
+        local priority = 999
+        
+        if name == "Rayshield" or name == "Ticket" or (obj.Parent and obj.Parent.Name:find("Ticket")) then
+            priority = 1
+        elseif name == "Game Console" then
+            priority = 2
+        else
+            continue
+        end
+        
+        table.insert(items, {obj = obj, priority = priority})
+    end
+    
+    table.sort(items, function(a, b)
+        if a.priority ~= b.priority then return a.priority < b.priority end
+        return (projectOntoLine(a.obj.Position) - A).Magnitude < (projectOntoLine(b.obj.Position) - A).Magnitude
+    end)
+    
+    return items
+end
+
+local function findNearby(center, radius)
+    local nearby = {}
+    
+    local regionMin = center - Vector3.new(radius, 50, radius)
+    local regionMax = center + Vector3.new(radius, 50, radius)
+    local region = Region3.new(regionMin, regionMax):ExpandToGrid(4)
+    
+    local parts = workspace:FindPartsInRegion3(region, nil, math.huge)
+    
+    for _, obj in pairs(parts) do
+        local dist = (obj.Position - center).Magnitude
+        if dist > radius then continue end
+        
+        local name = obj.Name
+        local priority = 999
+        
+        if name == "Rayshield" or name == "Ticket" or (obj.Parent and obj.Parent.Name:find("Ticket")) then
+            priority = 1
+        elseif name == "Game Console" then
+            priority = 2
+        else
+            continue
+        end
+        
+        table.insert(nearby, {obj = obj, priority = priority, dist = dist})
+    end
+    
+    table.sort(nearby, function(a, b)
+        if a.priority ~= b.priority then return a.priority < b.priority end
+        return a.dist < b.dist
+    end)
+    
+    return nearby
+end
+
+local function flyTo(pos)
+    local hrp = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+    if not hrp then return end
+    
+    local start = hrp.Position
+    local dist = (pos - start).Magnitude
+    if dist < 2 then
+        hrp.CFrame = CFrame.new(pos)
+        return
+    end
+    
+    local duration = dist / FLY_SPEED
+    local t0 = tick()
+    
+    while tick() - t0 < duration do
+        hrp = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+        if not hrp then break end
+        
+        local alpha = (tick() - t0) / duration
+        hrp.CFrame = CFrame.new(start:Lerp(pos, alpha))
+        
+        task.wait()
+    end
+    
+    if hrp then
+        hrp.CFrame = CFrame.new(pos)
+    end
+end
+
+-- HÀM CHÍNH - LOGIC GỐC 100%
+local function startCollectLogic()
+    arcadeRunning = false
+    task.wait(0.5)
+    
+    if not player.Character then return end
+    arcadeRunning = true
+    
+    -- Xóa tường
+    pcall(function()
+        workspace:WaitForChild("DefaultMap_SharedInstances", 2):WaitForChild("VIPWalls", 2):ClearAllChildren()
+    end)
+    
+    pcall(function()
+        workspace:WaitForChild("ArcadeMap_SharedInstances", 2):WaitForChild("VIPWalls", 2):ClearAllChildren()
+    end)
+    
+    if player.Character then
+        setupNoFall(player.Character)
+    end
+    
+    flyTo(A)
+    local currentProj = A
+    
+    while ARCADE_ENABLED and arcadeRunning do
+        local hrp = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+        if not hrp then break end
+        
+        if bodyVelocity and bodyVelocity.Parent then
+            bodyVelocity.Velocity = Vector3.new(0, 0, 0)
+        end
+        
+        local all = scanItems()
+        if #all == 0 then
+            task.wait(2)
+            continue
+        end
+        
+        local target = all[1]
+        if not target or not target.obj or not target.obj.Parent then
+            task.wait(1)
+            continue
+        end
+        
+        local targetProj = projectOntoLine(target.obj.Position)
+        
+        if (targetProj - currentProj).Magnitude > 10 then
+            flyTo(targetProj)
+            currentProj = targetProj
+        end
+        
+        local collected = 0
+        
+        while arcadeRunning and collected < 50 do
+            hrp = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+            if not hrp then break end
+            
+            if hasTsunami() then
+                print("🌊 TSUNAMI - TELEPORT VỀ!")
+                local myProj = projectOntoLine(hrp.Position)
+                
+                hrp.CFrame = CFrame.new(myProj)
+                currentProj = myProj
+                
+                local waitCount = 0
+                while hasTsunami() and waitCount < 20 do
+                    task.wait(0.5)
+                    waitCount = waitCount + 1
+                end
+                
+                print("✅ An toàn - Tiếp tục")
+                break
+            end
+            
+            local near = findNearby(hrp.Position, COLLECT_RADIUS)
+            
+            if #near == 0 then
+                local myProj = projectOntoLine(hrp.Position)
+                if (myProj - hrp.Position).Magnitude > 5 then
+                    flyTo(myProj)
+                    currentProj = myProj
+                end
+                break
+            end
+            
+            local item = near[1]
+            if item and item.obj and item.obj.Parent then
+                flyTo(item.obj.Position)
+                collected = collected + 1
+                task.wait(0.2)
+            else
+                break
+            end
+            
+            task.wait(0.05)
+        end
+        
+        task.wait(0.2)
+    end
+end
+
+function startArcadeCollect()
+    if arcadeRunning then return end
+    print("🎮 Starting Arcade Collect...")
+    task.spawn(startCollectLogic)
+end
+
+function stopArcadeCollect()
+    arcadeRunning = false
+    print("🎮 Stopped Arcade Collect")
+end
+
+-- Heartbeat giữ không rơi
+RunService.Heartbeat:Connect(function()
+    if arcadeRunning then
+        local char = player.Character
+        if char then
+            local hrp = char:FindFirstChild("HumanoidRootPart")
+            
+            if hrp then
+                for _, part in pairs(char:GetDescendants()) do
+                    if part:IsA("BasePart") then
+                        part.CanCollide = false
+                    end
+                end
+                
+                if bodyVelocity and bodyVelocity.Parent then
+                    bodyVelocity.Velocity = Vector3.new(0, 0, 0)
+                end
+            end
+        end
+    end
+end)
+
+local function refreshArcadeBtn()
+    if ARCADE_ENABLED then
+        arcadeStatusIndicator.Text = "ON"
+        arcadeStatusIndicator.BackgroundColor3 = Color3.fromRGB(60, 200, 60)
+        arcadeBtnStroke.Color = Color3.fromRGB(138, 43, 226)
+        arcadeBtn.BackgroundColor3 = Color3.fromRGB(30, 20, 40)
+        arcadeTimerDisplay.Visible = true
+    else
+        arcadeStatusIndicator.Text = "OFF"
+        arcadeStatusIndicator.BackgroundColor3 = Color3.fromRGB(200, 60, 60)
+        arcadeBtnStroke.Color = Color3.fromRGB(138, 43, 226)
+        arcadeBtn.BackgroundColor3 = Color3.fromRGB(40, 30, 50)
+        arcadeTimerDisplay.Visible = false
+        stopArcadeCollect()
+    end
+end
+
+arcadeBtn.MouseButton1Click:Connect(function()
+    ARCADE_ENABLED = not ARCADE_ENABLED
+    _G.ArcadeEventEnabled = ARCADE_ENABLED
+    refreshArcadeBtn()
+end)
+
+-- ============================================
+-- CLOSE & SETUP
+-- ============================================
+
+closeBtn.MouseButton1Click:Connect(function()
+    AUTO_ENABLED = false
+    ARCADE_ENABLED = false
+    _G.AutoEventEnabled = false
+    _G.ArcadeEventEnabled = false
+    stopAutoFarm()
+    stopArcadeCollect()
+    screenGui:Destroy()
+end)
+
+local function setupCharacterDeath()
+    local humanoidCheck = character:FindFirstChildOfClass("Humanoid")
+    if humanoidCheck then
+        humanoidCheck.Died:Connect(function()
+            if isAutoRunning and currentTargetIndex <= #TARGETS then
+                updateFarmUI("Bị chết - Chờ hồi sinh...")
+                isPaused = true
+                disableNoclip()
+                stopNotificationListener()
+            end
+        end)
+    end
+end
+
+player.CharacterAdded:Connect(function(newChar)
+    character = newChar
+    humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+    humanoid = character:WaitForChild("Humanoid")
+    task.wait(2)
+    setupCharacterDeath()
+    
+    if isPaused and currentTargetIndex <= #TARGETS then
+        isPaused = false
+        updateFarmUI("Hồi sinh - Tiếp tục...")
+        task.wait(1)
+        executeAutoFarm()
+    end
+    
+    if arcadeRunning then
+        setupNoFall(newChar)
+        task.wait(1)
+        startCollectLogic()
+    end
+end)
+
+setupCharacterDeath()
+refreshEventMoneyBtn()
+refreshArcadeBtn()
+updateSlider()
+
+spawn(function()
+    while wait(1) do
+        pcall(updateTimer)
+        pcall(updateArcadeTimer)
+    end
+end)
+
+
+
+print("MAIN SCRIPT RUNNING")
